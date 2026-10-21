@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grodd: Gro's AI teammate</title>
+<style>
+  @page { size: A4; margin: 12mm; }
+
+  :root {
+    --sun: #FFC83D;
+    --sun-soft: #FFEFC2;
+    --green: #1F5130;
+    --green-deep: #15381F;
+    --cream: #FFF8E6;
+    --card: #FFFFFF;
+    --line: #EADFC2;
+    --ink: #1C2B20;
+    --muted: #4F5F53;
+  }
+
+  * { box-sizing: border-box; }
+
+  html {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body {
+    margin: 0;
+    background: #E7E0C8;
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 9.2pt;
+    line-height: 1.36;
+  }
+
+  /* Screen: an A4-sized sheet centred on a neutral backdrop */
+  .sheet {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 24px auto;
+    padding: 12mm;
+    background: var(--cream);
+    box-shadow: 0 6px 28px rgba(20, 40, 20, 0.18);
+    display: flex;
+    flex-direction: column;
+    gap: 4mm;
+  }
+
+  section { break-inside: avoid; }
+
+  /* Header */
+  .hero {
+    background: var(--green);
+    color: var(--cream);
+    border-radius: 5mm;
+    padding: 5mm 7mm 5.8mm;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 2.4mm;
+    background: var(--sun);
+  }
+  .kicker {
+    font-size: 7.6pt;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sun);
+  }
+  h1 {
+    margin: 1.2mm 0 0.6mm;
+    font-size: 24pt;
+    line-height: 1.05;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  .tagline {
+    margin: 0;
+    font-size: 12.5pt;
+    font-weight: 700;
+    color: var(--sun);
+  }
+  .sub {
+    margin: 1.2mm 0 0;
+    font-size: 8.8pt;
+    opacity: 0.88;
+  }
+
+  /* Section headings */
+  h2 {
+    display: flex;
+    align-items: center;
+    gap: 2.5mm;
+    margin: 0 0 2mm;
+    font-size: 10pt;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green);
+  }
+  h2::after {
+    content: "";
+    flex: 1;
+    height: 0.5mm;
+    background: var(--sun);
+    border-radius: 1mm;
+  }
+
+  /* The problem */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4mm;
+  }
+  .stat {
+    background: var(--sun);
+    color: var(--green-deep);
+    border-radius: 4mm;
+    padding: 2.6mm 4mm;
+    display: flex;
+    align-items: center;
+    gap: 3.5mm;
+  }
+  .num {
+    font-size: 30pt;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    min-width: 17mm;
+  }
+  .lbl {
+    font-size: 8.8pt;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  /* What Grodd does */
+  .skills {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.6mm;
+  }
+  .skill {
+    display: grid;
+    grid-template-columns: 10mm 1fr;
+    align-items: center;
+    gap: 2.2mm;
+    background: var(--card);
+    border: 0.2mm solid var(--line);
+    border-left: 1.4mm solid var(--green);
+    border-radius: 3mm;
+    padding: 1.7mm 3.5mm 1.7mm 2.5mm;
+  }
+  .ico {
+    font-size: 15pt;
+    line-height: 1;
+    text-align: center;
+  }
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3mm;
+  }
+  .skill h3 {
+    margin: 0;
+    font-size: 10pt;
+    color: var(--green-deep);
+  }
+  .skill p {
+    margin: 0.2mm 0 0;
+    font-size: 8.8pt;
+  }
+  .prize {
+    font-size: 7.4pt;
+    font-weight: 700;
+    white-space: nowrap;
+    padding: 0.9mm 2.4mm;
+    border-radius: 10mm;
+    background: var(--sun);
+    color: var(--green-deep);
+  }
+  .prize.impact {
+    background: var(--green);
+    color: var(--cream);
+  }
+  .prize.build {
+    background: var(--sun-soft);
+    box-shadow: inset 0 0 0 0.25mm var(--sun);
+  }
+
+  /* How it works */
+  .flow {
+    display: flex;
+    align-items: stretch;
+    gap: 2mm;
+  }
+  .step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 2mm 2.5mm;
+    border-radius: 3.5mm;
+    background: var(--green);
+    color: var(--cream);
+  }
+  .step b {
+    font-size: 10.5pt;
+    font-weight: 800;
+  }
+  .step span {
+    font-size: 8pt;
+    opacity: 0.92;
+  }
+  .step.human {
+    background: var(--sun);
+    color: var(--green-deep);
+    box-shadow: inset 0 0 0 0.5mm var(--green-deep);
+  }
+  .step.sim {
+    background: transparent;
+    color: var(--green);
+    border: 0.45mm dashed var(--green);
+  }
+  .arrow {
+    align-self: center;
+    font-size: 13pt;
+    font-weight: 700;
+    color: var(--green);
+  }
+  .note {
+    margin: 1.6mm 0 0;
+    font-size: 8.4pt;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  /* Safe by design */
+  .safe {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.8mm 4mm;
+  }
+  .safe li {
+    position: relative;
+    padding-left: 5.8mm;
+  }
+  .safe li::before {
+    content: "\2713";
+    position: absolute;
+    left: 0;
+    top: 0.2mm;
+    width: 4mm;
+    height: 4mm;
+    border-radius: 50%;
+    background: var(--green);
+    color: var(--sun);
+    font-size: 7.6pt;
+    font-weight: 800;
+    line-height: 4mm;
+    text-align: center;
+  }
+
+  /* Roadmap */
+  .road {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3.5mm;
+  }
+  .rm {
+    border-top: 1.2mm solid var(--sun);
+    padding-top: 1.6mm;
+  }
+  .when {
+    font-size: 8.2pt;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--green);
+  }
+  .rm p {
+    margin: 0.8mm 0 0;
+    font-size: 8.8pt;
+  }
+
+  /* Footer */
+  footer {
+    margin-top: auto;
+    background: var(--green);
+    color: var(--cream);
+    border-radius: 4mm;
+    padding: 2.6mm 4.5mm;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1mm 6mm;
+    font-size: 8pt;
+  }
+  footer p { margin: 0; }
+  .repo {
+    color: var(--sun);
+    font-weight: 700;
+  }
+
+  @media (max-width: 720px) {
+    .sheet {
+      width: auto;
+      min-height: 0;
+      margin: 0;
+      padding: 16px;
+      box-shadow: none;
+    }
+    h1 { font-size: 21pt; }
+    .stats, .road, .safe { grid-template-columns: 1fr; }
+    .flow { flex-direction: column; }
+    .arrow { transform: rotate(90deg); }
+  }
+
+  @media print {
+    html, body { background: var(--cream); }
+    .sheet {
+      width: auto;
+      min-height: 0;
+      margin: 0;
+      padding: 0;
+      box-shadow: none;
+      background: transparent;
+    }
+  }
+</style>
+</head>
+<body>
+<main class="sheet">
+
+  <header class="hero">
+    <div class="kicker">Jury handout · Gro to the Future · Automation mini-hackathon</div>
+    <h1>Grodd 🌱: Gro's AI teammate</h1>
+    <p class="tagline">One sentence in. A whole event out. Nobody stuck alone.</p>
+    <p class="sub">A bilingual (Swedish/English) AI operations assistant for Gro Community in Växjö.</p>
+  </header>
+
+  <section>
+    <h2>The problem</h2>
+    <div class="stats">
+      <div class="stat"><div class="num">46</div><div class="lbl">breakfast event posts cloned by hand</div></div>
+      <div class="stat"><div class="num">37</div><div class="lbl">cloned room bookings</div></div>
+      <div class="stat"><div class="num">5</div><div class="lbl">disconnected tools: Circle, Luma, Swish, Brevo and Gmail</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>What Grodd does</h2>
+    <ul class="skills">
+      <li class="skill">
+        <span class="ico" aria-hidden="true">🗓</span>
+        <div>
+          <div class="top"><h3>Event → everywhere</h3><span class="prize">Best Business Value</span></div>
+          <p>One sentence becomes one recurring event series plus drafts for every channel.</p>
+        </div>
+      </li>
+      <li class="skill">
+        <span class="ico" aria-hidden="true">🎫</span>
+        <div>
+          <div class="top"><h3>Member check</h3><span class="prize">Best Business Value</span></div>
+          <p>Flags non-members on free member tickets and drafts a friendly join nudge.</p>
+        </div>
+      </li>
+      <li class="skill">
+        <span class="ico" aria-hidden="true">🔍</span>
+        <div>
+          <div class="top"><h3>Site fix-list</h3><span class="prize">Best Business Value</span></div>
+          <p>Audits the site: contradictions and stale content by severity, with exact fixes.</p>
+        </div>
+      </li>
+      <li class="skill">
+        <span class="ico" aria-hidden="true">💬</span>
+        <div>
+          <div class="top"><h3>Gro Pulse coach</h3><span class="prize impact">Greatest Human Impact</span></div>
+          <p>Summarises each weekly Pulse and suggests a next step and a member type to meet.</p>
+        </div>
+      </li>
+      <li class="skill">
+        <span class="ico" aria-hidden="true">☕</span>
+        <div>
+          <div class="top"><h3>Fika Forecast</h3><span class="prize build">Most Unnecessary Build</span></div>
+          <p>Forecasts Wednesday attendance from RSVPs and weather, then orders kanelbullar.</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>How it works</h2>
+    <div class="flow">
+      <div class="step"><b>Haiku</b><span>routes the request</span></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step"><b>Sonnet</b><span>writes the drafts</span></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step human"><b>Human</b><span>approves</span></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step sim"><b>Publish</b><span>simulated in the demo</span></div>
+    </div>
+    <p class="note">Anything public, money-related, a membership change or an introduction waits for a person.</p>
+  </section>
+
+  <section>
+    <h2>Safe by design</h2>
+    <ul class="safe">
+      <li><strong>Draft-only.</strong> A human approves anything public, money-related, a membership decision or an introduction.</li>
+      <li><strong>Private by default.</strong> Emails are masked (a***@…), the member list is never returned, and contact details are never shared without consent.</li>
+      <li><strong>Fake demo data.</strong> The demo runs on fake member data only.</li>
+      <li><strong>AI disclosure and GDPR opt-in.</strong> Grodd says it is an AI assistant, and matching needs explicit opt-in consent.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Roadmap</h2>
+    <div class="road">
+      <div class="rm">
+        <div class="when">MVP · 2 weeks</div>
+        <p>FAQ concierge, drafts-only event pipeline and a daily member-ticket check.</p>
+      </div>
+      <div class="rm">
+        <div class="when">v1 · weeks 3–8</div>
+        <p>Opt-in Gro Intros, KPI and grant reporting, renewal reminders and a weekly site hygiene scan.</p>
+      </div>
+      <div class="rm">
+        <div class="when">v2 · about Q1–Q2 2027</div>
+        <p>Live room and desk booking, search across all Circle content and a member self-service portal.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Built at Gro to the Future · Växjö · 2026-10-21 · Made with Claude</p>
+    <!-- Placeholder line: repo address supplied by the author, confirm before printing. -->
+    <p class="repo">Repo: github.com/Hakeperty/Gro_hackathon</p>
+  </footer>
+
+</main>
+</body>
+</html>

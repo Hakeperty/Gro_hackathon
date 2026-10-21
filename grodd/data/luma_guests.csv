@@ -1,0 +1,21 @@
+guest_id,name,email,ticket_type,registered_at,event
+G-01,Kanel Bullesson,kanel.bullesson@example.com,Member (free),2026-10-01T09:12:00+02:00,Gro to the Future 2026
+G-02,Fika Fredriksson,fika.fredriksson@example.com,Member (free),2026-10-01T10:40:00+02:00,Gro to the Future 2026
+G-03,Testa Testson,testa.testson@example.com,Member (free),2026-10-02T08:05:00+02:00,Gro to the Future 2026
+G-04,Demo Dahlberg,demo.d@example.org,Member (free),2026-10-02T13:30:00+02:00,Gro to the Future 2026
+G-05,Fejk Fransson,fejk.fransson@example.com,Member (free),2026-10-03T07:55:00+02:00,Gro to the Future 2026
+G-06,Gratis Gustafsson,gratis.gustafsson@example.com,Member (free),2026-10-04T21:17:00+02:00,Gro to the Future 2026
+G-07,Nyfiken Nilsson,nyfiken.nilsson@example.com,Member (free),2026-10-06T12:01:00+02:00,Gro to the Future 2026
+G-08,Okänd Olsson,okand.olsson@example.com,Member (free),2026-10-08T16:44:00+02:00,Gro to the Future 2026
+G-09,Ny Nyström,ny.nystrom@example.com,Member (free),2026-10-09T09:09:00+02:00,Gro to the Future 2026
+G-10,Exempel Ekström,EXEMPEL.EKSTROM@example.com,Member (free),2026-10-10T11:20:00+02:00,Gro to the Future 2026
+G-11,Mock Malmberg,mock.malmberg+luma@example.com,Member (free),2026-10-11T18:02:00+02:00,Gro to the Future 2026
+G-12,Besök Berg,besok.berg@example.com,Non-member (140 kr),2026-10-12T08:30:00+02:00,Gro to the Future 2026
+G-13,Gäst Grön,gast.gron@example.com,Non-member (140 kr),2026-10-13T14:15:00+02:00,Gro to the Future 2026
+G-14,Sample Sandberg,sample.sandberg@example.com,Non-member (140 kr),2026-10-14T10:10:00+02:00,Gro to the Future 2026
+G-15,Partner Pålsson,partner.palsson@example.com,Partner,2026-10-15T09:00:00+02:00,Gro to the Future 2026
+G-16,Kaffe Karlsson,kaffe.karlsson@example.com,Member (free),2026-10-16T07:45:00+02:00,Gro to the Future 2026
+G-17,Pitch Palmqvist,pitch.palmqvist@example.com,Member (free),2026-10-17T15:30:00+02:00,Gro to the Future 2026
+G-18,Turist Toresson,turist.toresson@example.com,Non-member (140 kr),2026-10-18T19:05:00+02:00,Gro to the Future 2026
+G-19,Startup Strand,startup.strand@example.com,Member (free),2026-10-19T08:20:00+02:00,Gro to the Future 2026
+G-20,Prova Pettersson,prova.pettersson@example.com,Member (free),2026-10-20T12:12:00+02:00,Gro to the Future 2026

@@ -1,0 +1,12 @@
+{
+  "name": "grodd",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Grodd 🌱 – AI operations agent demo for Gro Community (zero dependencies).",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "smoke": "node test/smoke.mjs"
+  },
+  "engines": { "node": ">=20" }
+}

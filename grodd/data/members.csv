@@ -1,0 +1,16 @@
+member_id,name,email,tier,member_since,matchmaking_opt_in
+M-01,Kanel Bullesson,kanel.bullesson@example.com,Impact,2024-09-02,yes
+M-02,Fika Fredriksson,fika.fredriksson@example.com,Basic,2024-10-14,no
+M-03,Testa Testsson,testa.testsson@example.com,Impact,2025-01-20,yes
+M-04,Demo Dahlberg,demo.dahlberg@example.com,Resident,2024-08-30,yes
+M-05,Exempel Ekström,exempel.ekstrom@example.com,Basic,2025-03-03,no
+M-06,Påhittad Persson,pahittad.persson@example.com,Impact,2025-02-11,yes
+M-07,Låtsas Lindqvist,latsas.lindqvist@example.com,Basic,2025-05-19,no
+M-08,Mock Malmberg,mock.malmberg@example.com,Resident,2024-11-05,yes
+M-09,Prova Pettersson,prova.pettersson@example.com,Basic,2025-06-09,no
+M-10,Sample Sandberg,sample.sandberg@example.com,Impact,2025-04-22,yes
+M-11,Platshållare Holm,platshallare.holm@example.com,Basic,2025-08-18,no
+M-12,Dummy Duvander,dummy.duvander@example.com,Basic,2026-01-12,yes
+M-13,Kaffe Karlsson,kaffe.karlsson@example.com,Impact,2025-09-01,yes
+M-14,Startup Strand,startup.strand@example.com,Basic,2026-02-02,no
+M-15,Pitch Palmqvist,pitch.palmqvist@example.com,Resident,2024-09-15,yes

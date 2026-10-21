@@ -1,0 +1,22 @@
+# Secrets: the only env file that is committed is the template
+.env
+.env.*
+!.env.example
+**/.env
+
+# Dependencies and OS / editor clutter
+node_modules/
+.DS_Store
+*.log
+.vscode/
+.idea/
+
+# Local-only artifacts
+grodd/test/attack-report.json
+.claude/settings.local.json
+
+# Security audit of a real organisation: keep private, do not publish to the public repo
+fix.md
+
+# REA raw evidence exports (contain local machine paths)
+*evidence-bundle*.json

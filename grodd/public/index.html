@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Grodd · Gro Community</title>
+  <meta name="description" content="Grodd – Gro Communitys AI-assistent. Utkast kräver godkännande.">
+  <meta name="theme-color" content="#1F5130">
+  <meta name="color-scheme" content="light">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='50' y='82' font-size='84' text-anchor='middle'%3E%F0%9F%8C%B1%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="skip">Hoppa till innehållet</a>
+
+  <header class="site-header">
+    <div class="brand">
+      <h1 class="brand-name"><span aria-hidden="true">🌱</span> Grodd</h1>
+      <p class="tagline" data-i18n="tagline">Gro Communitys AI-assistent</p>
+    </div>
+    <div class="header-tools">
+      <span id="mode-badge" class="mode-badge mode-unknown" role="status">…</span>
+      <div class="lang-toggle" role="group" aria-label="Språk / Language">
+        <button type="button" class="lang-btn" data-lang="sv" aria-pressed="true" lang="sv" aria-label="SV – Svenska">SV</button>
+        <button type="button" class="lang-btn" data-lang="en" aria-pressed="false" lang="en" aria-label="EN – English">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="mobile-tabs" id="mobile-tabs" aria-label="Visa">
+    <button type="button" class="tab-btn" data-view="chat" aria-pressed="true">
+      <span aria-hidden="true">💬</span> <span data-i18n="tab.chat">Chatt</span>
+    </button>
+    <button type="button" class="tab-btn" data-view="queue" aria-pressed="false">
+      <span aria-hidden="true">✅</span> <span data-i18n="tab.queue">Godkännandekö</span>
+      <span id="tab-count" class="tab-count" aria-hidden="true">0</span>
+      <span id="tab-count-sr" class="sr-only"></span>
+    </button>
+  </nav>
+
+  <main id="main" tabindex="-1" data-view="chat">
+    <section id="chat-panel" class="panel chat-panel" aria-labelledby="chat-title">
+      <div class="panel-head">
+        <h2 id="chat-title" data-i18n="chat.title">Chatta med Grodd</h2>
+        <p class="panel-sub" data-i18n="chat.sub">Svenska eller engelska. Allt som blir publikt kräver Gro-teamets godkännande.</p>
+      </div>
+
+      <div id="messages" class="messages" role="log" aria-live="polite" aria-relevant="additions" tabindex="0"
+           aria-label="Konversation" data-i18n-attr="aria-label:chat.log"></div>
+
+      <div class="quick" role="group" aria-labelledby="quick-title">
+        <h3 id="quick-title" class="sr-only" data-i18n="quick.title">Snabbval</h3>
+        <div id="quick-grid" class="quick-grid"></div>
+      </div>
+
+      <form id="composer" class="composer" autocomplete="off">
+        <label for="msg-input" class="sr-only" data-i18n="input.label">Meddelande till Grodd</label>
+        <textarea id="msg-input" rows="1" maxlength="2000" enterkeyhint="send" aria-describedby="input-hint"
+                  placeholder="Skriv till Grodd…"
+                  data-i18n-attr="placeholder:input.placeholder"></textarea>
+        <button type="submit" id="send-btn" class="btn btn-primary send-btn">
+          <span data-i18n="send">Skicka</span> <span aria-hidden="true">➤</span>
+        </button>
+        <p id="input-hint" class="input-hint" data-i18n="input.hint">Enter skickar · Shift+Enter ny rad</p>
+      </form>
+    </section>
+
+    <section id="queue-panel" class="panel queue-panel" aria-labelledby="queue-title">
+      <div class="panel-head queue-head">
+        <div class="queue-titlebar">
+          <h2 id="queue-title" tabindex="-1" data-i18n="queue.title">Godkännandekö</h2>
+          <span id="queue-count" class="count-pill is-zero" aria-live="polite">0</span>
+        </div>
+        <p class="panel-sub" data-i18n="queue.sub">Inget publiceras på riktigt. Att godkänna simulerar bara publiceringen.</p>
+        <div class="filters" role="group" aria-label="Filter" data-i18n-attr="aria-label:filter.label">
+          <button type="button" class="filter-btn" data-filter="all" aria-pressed="true"><span data-i18n="filter.all">Alla</span> <span id="filter-all-n" class="filter-n">0</span></button>
+          <button type="button" class="filter-btn" data-filter="pending" aria-pressed="false"><span data-i18n="filter.pending">Väntar</span> <span id="filter-pending-n" class="filter-n">0</span></button>
+        </div>
+        <p id="queue-offline" class="queue-offline" role="status" hidden></p>
+      </div>
+      <ul id="queue-list" class="queue-list" tabindex="0" aria-label="Godkännandekö" data-i18n-attr="aria-label:queue.title"></ul>
+      <p id="queue-empty" class="queue-empty" hidden></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p data-i18n="footer">AI-assistent · Utkast kräver godkännande · Fake demo data</p>
+  </footer>
+
+  <div id="toasts" class="toasts"></div>
+
+  <noscript>
+    <p class="noscript">Grodd behöver JavaScript för att fungera. / Grodd needs JavaScript to work.</p>
+  </noscript>
+</body>
+</html>
